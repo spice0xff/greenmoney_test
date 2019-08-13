@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Task3";
+}
+
+<br />
+@using (Html.BeginForm("Task3", "Home", FormMethod.Post)) {
+    <input type="text" name="input_data_string" />
+    <input type="submit" value="Отправить" />
+}
+Output: @ViewBag.Data

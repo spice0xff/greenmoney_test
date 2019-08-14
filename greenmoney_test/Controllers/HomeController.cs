@@ -35,32 +35,51 @@ namespace greenmoney_test.Controllers
             return View();
         }
 
-        public ActionResult Task2()
-        {
-            // Количество цифр после запятой.
-            const int digit_after_point = 100;
-            // Верхнее значение для случайного числа.
-            const double max_value = 0.6;
+        //public ActionResult Task2()
+        //{
+        //    // Количество цифр после запятой.
+        //    const int digit_after_point = 100;
+        //    // Верхнее значение для случайного числа.
+        //    const double max_value = 0.6;
 
-            List<String> number_list = new List<String>();
+        //    List<String> number_list = new List<String>();
+        //    Random random = new Random();
+
+        //    // Случайное число, большее нуля и меньшее заданного верхнего предела.
+        //    int rnd = random.Next(1, (int)(digit_after_point * max_value));
+        //    number_list.Add(String.Format("{0}", rnd / (double)digit_after_point));
+
+        //    int sum = rnd;
+        //    while (sum != digit_after_point) {
+        //        // Верхнее значение для случайного числа = 1 - сумма чисел ряда, но не бошьше заданного верхнего предела.
+        //        int max = Math.Min((int)(digit_after_point * max_value), digit_after_point - sum);
+
+        //        rnd = random.Next(1, max);
+        //        number_list.Add(String.Format("{0}", rnd / (double)digit_after_point));
+
+        //        sum += rnd;
+        //    }
+
+        //    ViewBag.number_list = number_list;
+        //    return View();
+        //}
+
+        public ActionResult Task2() {
+            List<String> random_number_list = new List<String>();
             Random random = new Random();
 
-            // Случайное число, большее нуля и меньшее заданного верхнего предела.
-            int rnd = random.Next(1, (int)(digit_after_point * max_value));
-            number_list.Add(String.Format("{0}", rnd / (double)digit_after_point));
+            double random_number = 0;
+            double sum = 0;
+            do {
+                random_number = 0.6 * random.NextDouble();
+                random_number_list.Add(String.Format("{0}", random_number));
 
-            int sum = rnd;
-            while (sum != digit_after_point) {
-                // Верхнее значение для случайного числа = 1 - сумма чисел ряда, но не бошьше заданного верхнего предела.
-                int max = Math.Min((int)(digit_after_point * max_value), digit_after_point - sum);
+                sum += random_number;
+            } while (1 - sum > 0.6);
+            random_number = 1 - sum;
+            random_number_list.Add(String.Format("{0}", random_number));
 
-                rnd = random.Next(1, max);
-                number_list.Add(String.Format("{0}", rnd / (double)digit_after_point));
-
-                sum += rnd;
-            }
-
-            ViewBag.number_list = number_list;
+            ViewBag.number_list = random_number_list;
             return View();
         }
 
